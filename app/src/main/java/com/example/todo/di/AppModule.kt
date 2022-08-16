@@ -17,7 +17,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesTodoDatabase(app:Application): TodoDatabase{
+    fun provideTodoDatabase(app: Application): TodoDatabase {
         return Room.databaseBuilder(
             app,
             TodoDatabase::class.java,
@@ -27,9 +27,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesTodoRepository(db: TodoDatabase): TodoRepository{
+    fun provideTodoRepository(db: TodoDatabase): TodoRepository {
         return TodoRepositoryImpl(db.dao)
     }
-
-
 }

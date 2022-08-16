@@ -19,14 +19,27 @@ class TodoListViewModel @Inject constructor(
 
     val todos = repository.getTodos()
 
-    private val _uiEvent = Channel<UiEvent> ()
+    private val _uiEvent =  Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
     private var deletedTodo: Todo? = null
 
-    fun onEvent(event: TodoListEvent){
-        when(event){
-            is TodoListEvent.OnDeleteTodo -> {
+    fun onEvent(event: TodoListEvent) {
+        when(event) {
+            is TodoListEvent.OnTodoClick -> {
+                sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO + "?todoId=${event.todo.id}"))
+            }
+            is TodoListEvent.OnAddTodoClick -> {
+                sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO))
+            }
+            is TodoListEvent.OnUndoDeleteClick -> {
+                deletedTodo?.let { todo ->
+                    viewModelScope.launch {
+                        repository.insertTodo(todo)
+                    }
+                }
+            }
+            is TodoListEvent.OnDeleteTodoClick -> {
                 viewModelScope.launch {
                     deletedTodo = event.todo
                     repository.deleteTodo(event.todo)
@@ -35,9 +48,6 @@ class TodoListViewModel @Inject constructor(
                         action = "Undo"
                     ))
                 }
-            }
-            is TodoListEvent.OnAddTodoClick -> {
-                sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO))
             }
             is TodoListEvent.OnDoneChange -> {
                 viewModelScope.launch {
@@ -48,20 +58,10 @@ class TodoListViewModel @Inject constructor(
                     )
                 }
             }
-            is TodoListEvent.OnTodoClick -> {
-                sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO + "?todoId=${event.todo.id}"))
-            }
-            is TodoListEvent.OnUndoDeleteClick -> {
-                    deletedTodo?.let { todo ->
-                        viewModelScope.launch {
-                            repository.insertTodo(todo)
-                        }
-                    }
-                }
-            }
         }
+    }
 
-    private fun sendUiEvent(event: UiEvent){
+    private fun sendUiEvent(event: UiEvent) {
         viewModelScope.launch {
             _uiEvent.send(event)
         }

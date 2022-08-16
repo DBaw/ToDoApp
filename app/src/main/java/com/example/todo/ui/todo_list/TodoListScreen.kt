@@ -1,6 +1,5 @@
 package com.example.todo.ui.todo_list
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,32 +16,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.todo.ui.util.UiEvent
+import kotlinx.coroutines.flow.collect
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun  TodoListScreen(
+fun TodoListScreen(
     onNavigate: (UiEvent.Navigate) -> Unit,
     viewModel: TodoListViewModel = hiltViewModel()
-){
-
+) {
     val todos = viewModel.todos.collectAsState(initial = emptyList())
     val scaffoldState = rememberScaffoldState()
-
-    LaunchedEffect(key1 = true){
-        viewModel.uiEvent.collect{ event ->
-            when(event){
-                is UiEvent.Navigate -> {
-                    onNavigate(event)
-                }
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect { event ->
+            when(event) {
                 is UiEvent.ShowSnackbar -> {
                     val result = scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message,
                         actionLabel = event.action
                     )
-                    if (result == SnackbarResult.ActionPerformed){
+                    if(result == SnackbarResult.ActionPerformed) {
                         viewModel.onEvent(TodoListEvent.OnUndoDeleteClick)
                     }
                 }
+                is UiEvent.Navigate -> onNavigate(event)
                 else -> Unit
             }
         }
@@ -53,14 +48,17 @@ fun  TodoListScreen(
             FloatingActionButton(onClick = {
                 viewModel.onEvent(TodoListEvent.OnAddTodoClick)
             }) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add"
+                )
             }
         }
-    ){
+    ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize()
-        ){
-            items(todos.value){ todo ->
+        ) {
+            items(todos.value) { todo ->
                 TodoItem(
                     todo = todo,
                     onEvent = viewModel::onEvent,
