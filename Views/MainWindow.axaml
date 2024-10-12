@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ToDoApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+		d:DesignWidth="800"
+		Width="800"
+		MinWidth="500"
+		d:DesignHeight="450"
+		Height="450"
+		MinHeight="400"
+        x:Class="ToDoApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ToDoApp">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid RowDefinitions="*,Auto">
+		<Border Grid.Row="0">
+			<TransitioningContentControl Content="{Binding CurrentView}"/>
+		</Border>
+		<TextBlock Grid.Row="1"
+				   Classes.class1="{Binding IsError }"
+				   Classes.class2="{Binding !IsError }"
+				   Text="{Binding MessageText}"
+				   Foreground="#fafbeb"
+				   IsVisible="{Binding IsMessageVisible}"
+				   Padding="10,0,0,0">
+			<TextBlock.Styles>
+				<Style>
+					<Style Selector="TextBlock.class1">
+						<Setter Property="Background" Value="#D47980" />
+					</Style>
+					<Style Selector="TextBlock.class2">
+						<Setter Property="Background" Value="#33b890" />
+					</Style>
+				</Style>
+			</TextBlock.Styles>
+		</TextBlock>
+				   
+	</Grid>
+		
+	
+</Window>

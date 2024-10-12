@@ -1,0 +1,116 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+			 d:DesignWidth="800" 
+			 d:DesignHeight="450"
+             x:Class="ToDoApp.Views.LoginPageView">
+	
+	<Grid ColumnDefinitions="*,*">
+		<Grid Grid.Column="0"  RowDefinitions="2*,*,*,2*">
+			<Grid Grid.Row="0" ColumnDefinitions="*,3*,*" RowDefinitions="*,3*">
+				<TextBox Grid.Column="1"
+						 Grid.Row="1"
+						 Text="Sign In"
+						 FontSize="32"
+						 FontWeight="DemiBold"
+						 Margin="-10,0,0,0"
+						 BorderThickness="0"
+						 VerticalAlignment="Center"
+						 HorizontalAlignment="Left"/>
+			</Grid>
+
+			<Grid Grid.Row="1" ColumnDefinitions="*,3*,*" RowDefinitions="2*,2*">
+				<TextBlock Grid.Column="1"
+						   Grid.Row="0"
+						   Text="LOGIN"
+						   FontWeight="SemiBold"
+						   VerticalAlignment="Bottom"
+						   FontSize="12"
+						   Margin="0,0,0,5"/>
+				<TextBox Grid.Column="1"
+						 Grid.Row="1"
+						 Text="{Binding UserLogin}"
+						 FontSize="16"
+						 Watermark="login"
+						 AcceptsTab="False"
+						 AcceptsReturn="False"
+						 BorderThickness="2"
+						 CornerRadius="25"
+						 HorizontalContentAlignment="Left"
+						 VerticalContentAlignment="Center"/>
+			</Grid>
+
+			<Grid Grid.Row="2" ColumnDefinitions="*,3*,*" RowDefinitions="2*,2*">
+				<TextBlock Grid.Column="1"
+						   Grid.Row="0"
+						   VerticalAlignment="Bottom"
+						   Text="PASSWORD"
+						   FontWeight="SemiBold"
+						   FontSize="12"
+						   Margin="0,0,0,5"/>
+				<TextBox Grid.Column="1"
+						 Grid.Row="1"
+						 Text="{Binding UserPassword}"
+						 PasswordChar="*"
+						 FontSize="16"
+						 Watermark="password"
+						 AcceptsTab="False"
+						 AcceptsReturn="False"
+						 BorderThickness="2"
+						 CornerRadius="25"
+						 HorizontalContentAlignment="Left"
+						 VerticalContentAlignment="Center"/>
+			</Grid>
+
+			<Grid Grid.Row="3" ColumnDefinitions="*,3*,*" RowDefinitions="*,*,2*">
+				<Button Grid.Column="1"
+						Grid.Row="1"
+						Content="Login"
+						Command="{Binding LoginCommand}"
+						Background="#2f4858"
+						Foreground="#fafbeb"
+						CornerRadius="25"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"/>
+			</Grid>
+		</Grid>
+		<Grid Grid.Column="1"
+			  Background="#2f4858"
+			  RowDefinitions="2*,*,2*">
+			<Grid Grid.Row="1">
+				<StackPanel Orientation="Vertical" Spacing="10">
+					<TextBlock Text="Welcome to NOTES"
+							   FontSize="24"
+							   FontWeight="Bold"
+							   Foreground="#fafbeb"
+							   HorizontalAlignment="Center"/>
+					<TextBlock Text="Don't have an accaunt?"
+							   FontSize="12"
+							   FontWeight="Normal"
+							   FontStyle="Oblique"
+		                       Foreground="#fafbeb"
+		                       HorizontalAlignment="Center"/>
+					<Grid ColumnDefinitions="*,*,*">
+						<Button Grid.Column="1"
+								Content="Sign Up"
+								Command="{Binding CreateAccountCommand}"
+								Background="Transparent"
+								BorderThickness="2"
+								BorderBrush="#fafbeb"
+								CornerRadius="15"
+								Foreground="#fafbeb"
+								HorizontalAlignment="Stretch"
+								HorizontalContentAlignment="Center"/>	
+					</Grid>
+				</StackPanel>
+			</Grid>
+
+		</Grid>
+	</Grid>
+
+  
+</UserControl>
