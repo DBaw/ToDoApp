@@ -2,7 +2,7 @@
 
 namespace ToDoApp.Dto
 {
-    internal class UserDto
+    public class UserDto
     {
         [Key]
         public int Id { get; }

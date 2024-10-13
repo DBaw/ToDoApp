@@ -7,16 +7,16 @@ using ToDoApp.Utilities.Event;
 namespace ToDoApp.ViewModels
 {
     [ObservableRecipient]
-    internal partial class LoginPageViewModel : ViewModelBase
+    public partial class LoginPageViewModel : ViewModelBase
     {
-        
         public UserDto User = new("Domonik", "Hasełko");
 
-        [ObservableProperty]
-        private string _userLogin;
 
         [ObservableProperty]
-        private string _userPassword;
+        private string _userLogin = "";
+
+        [ObservableProperty]
+        private string _userPassword = "";
 
         [RelayCommand]
         public void Login()
