@@ -44,7 +44,7 @@ namespace ToDoApp.ViewModels
             }
 
             // If both login and password are correct, send the success message.
-            Messenger.Send(new LoginSuccessMessage(loggedUser.Id, loggedUser.Name));
+            Messenger.Send(new LoginSuccessMessage(loggedUser));
         }
 
         [RelayCommand]

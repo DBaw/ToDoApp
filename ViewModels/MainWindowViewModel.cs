@@ -44,7 +44,7 @@ namespace ToDoApp.ViewModels
         void IRecipient<LoginSuccessMessage>.Receive(LoginSuccessMessage message)
         {
             _previousView = CurrentView;
-            CurrentView = new HomePageViewModel();
+            CurrentView = new HomePageViewModel(Messenger, message.User);
         }
         void IRecipient<GoToCreateAcccountMessage>.Receive(GoToCreateAcccountMessage message)
         {

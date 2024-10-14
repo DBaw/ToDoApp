@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+             x:Class="ToDoApp.Views.NotesPageView">
+	<Grid RowDefinitions="*,*,*">
+		<Grid Grid.Row="0">
+			<StackPanel Orientation="Horizontal"
+						HorizontalAlignment="Right">
+				<TextBox Text="{Binding WelcomeText}" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0"/>
+				<Button Content="Logout" Command="{Binding LogoutCommand}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+			</StackPanel>
+					   
+		</Grid>
+	</Grid>
+		  
+</UserControl>
