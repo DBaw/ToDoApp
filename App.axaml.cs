@@ -56,7 +56,6 @@ namespace ToDoApp
             // Register ViewModels
             services.AddSingleton<HomePageViewModel>();
             services.AddSingleton(sp => new MainWindowViewModel(
-                sp.GetRequiredService<IMessenger>(),
                 sp.GetRequiredService<IUserRepository>()
                 ));
             

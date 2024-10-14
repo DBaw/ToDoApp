@@ -1,11 +1,11 @@
 ﻿namespace ToDoApp.Utilities.Event
 {
-    internal class CreateAccountMessage
+    internal class BottomBarMessage
     {
         public string Message;
         public bool IsError;
 
-        public CreateAccountMessage(string message, bool isError = false)
+        public BottomBarMessage(string message, bool isError = false)
         {
             Message = message;
             IsError = isError;

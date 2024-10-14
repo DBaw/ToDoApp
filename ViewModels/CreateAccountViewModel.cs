@@ -11,7 +11,6 @@ namespace ToDoApp.ViewModels
     public partial class CreateAccountViewModel : ViewModelBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly IMessenger _messenger;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CreateCommand))]
@@ -28,7 +27,7 @@ namespace ToDoApp.ViewModels
         public CreateAccountViewModel(IUserRepository userRepository, IMessenger messenger)
         {
             _userRepository = userRepository;
-            _messenger = messenger;
+            Messenger = messenger;
         }
 
         [RelayCommand (CanExecute = nameof(CanCreate))]
@@ -37,20 +36,20 @@ namespace ToDoApp.ViewModels
             bool userAlreadyExists = _userRepository.UserExistsAsync(UserLogin).Result;
             if (userAlreadyExists) 
             {
-                CreateAccountMessage message = new("User already exists", true);
-                _messenger.Send(message);
+                BottomBarMessage message = new("User already exists", true);
+                Messenger.Send(message);
             }
             else if (UserPassword != UserRepeatedPassword)
             {
-                CreateAccountMessage message = new("Passwords don't match", true);
-                _messenger.Send(message);
+                BottomBarMessage message = new("Passwords don't match", true);
+                Messenger.Send(message);
             }
             else
             {
                 UserDto user = new(UserLogin, UserPassword);
                 _userRepository.AddUserAsync(user);
-                CreateAccountMessage message = new("Account created succesfully");
-                _messenger.Send(message);
+                BottomBarMessage message = new("Account created succesfully");
+                Messenger.Send(message);
             }
 
         }
@@ -61,7 +60,7 @@ namespace ToDoApp.ViewModels
         public void Exit()
         {
             GoBackMessage message = new();
-            _messenger.Send(message);
+            Messenger.Send(message);
         }
 
     }

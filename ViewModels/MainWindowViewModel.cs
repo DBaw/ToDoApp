@@ -7,7 +7,7 @@ using ToDoApp.Utilities.Repository;
 
 namespace ToDoApp.ViewModels
 {
-    public partial class MainWindowViewModel : ObservableRecipient, IRecipient<LoginSuccessMessage>, IRecipient<GoToCreateAcccountMessage>, IRecipient<CreateAccountMessage>, IRecipient<GoBackMessage>
+    public partial class MainWindowViewModel : ObservableRecipient, IRecipient<LoginSuccessMessage>, IRecipient<GoToCreateAcccountMessage>, IRecipient<BottomBarMessage>, IRecipient<GoBackMessage>
     {
         private readonly IUserRepository _userRepository;
 
@@ -25,10 +25,10 @@ namespace ToDoApp.ViewModels
         [ObservableProperty]
         private bool _isMessageVisible = false;
 
-        public MainWindowViewModel(IMessenger messenger, IUserRepository userRepository)
+        public MainWindowViewModel(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _currentView = new LoginPageViewModel(Messenger);
+            _currentView = new LoginPageViewModel(Messenger, _userRepository);
             _previousView = _currentView;
 
             // Activate message listening
@@ -51,12 +51,12 @@ namespace ToDoApp.ViewModels
             _previousView = CurrentView;
             CurrentView = new CreateAccountViewModel(_userRepository,Messenger);
         }
-        async void IRecipient<CreateAccountMessage>.Receive(CreateAccountMessage message)
+        async void IRecipient<BottomBarMessage>.Receive(BottomBarMessage message)
         {
             if (!message.IsError)
             {
                 _previousView = CurrentView;
-                CurrentView = new LoginPageViewModel(Messenger);
+                CurrentView = new LoginPageViewModel(Messenger, _userRepository);
             }
             MessageText = message.Message;
             IsError = message.IsError;
