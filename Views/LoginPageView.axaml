@@ -10,15 +10,14 @@
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0"  RowDefinitions="2*,*,*,2*">
 			<Grid Grid.Row="0" ColumnDefinitions="*,3*,*" RowDefinitions="*,3*">
-				<TextBox Grid.Column="1"
-						 Grid.Row="1"
-						 Text="Sign In"
-						 FontSize="32"
-						 FontWeight="DemiBold"
-						 Margin="-10,0,0,0"
-						 BorderThickness="0"
-						 VerticalAlignment="Center"
-						 HorizontalAlignment="Left"/>
+				<TextBlock Grid.Column="1"
+						   Grid.Row="1"
+						   Text="Sign In"
+						   FontSize="32"
+						   FontWeight="DemiBold"
+						   Margin="-10,0,0,0"
+						   VerticalAlignment="Center"
+						   HorizontalAlignment="Left"/>
 			</Grid>
 
 			<Grid Grid.Row="1" ColumnDefinitions="*,3*,*" RowDefinitions="2*,2*">
@@ -69,8 +68,6 @@
 						Grid.Row="1"
 						Content="Login"
 						Command="{Binding LoginCommand}"
-						Background="#2f4858"
-						Foreground="#fafbeb"
 						CornerRadius="25"
 						HorizontalContentAlignment="Center"
 						VerticalContentAlignment="Center"
@@ -79,20 +76,20 @@
 			</Grid>
 		</Grid>
 		<Grid Grid.Column="1"
-			  Background="#2f4858"
+			  Background="#556e7b"
 			  RowDefinitions="2*,*,2*">
 			<Grid Grid.Row="1">
 				<StackPanel Orientation="Vertical" Spacing="10">
 					<TextBlock Text="Welcome to NOTES"
 							   FontSize="24"
 							   FontWeight="Bold"
-							   Foreground="#fafbeb"
+							   Foreground="#fafafa"
 							   HorizontalAlignment="Center"/>
 					<TextBlock Text="Don't have an accaunt?"
 							   FontSize="12"
 							   FontWeight="Normal"
 							   FontStyle="Oblique"
-		                       Foreground="#fafbeb"
+		                       Foreground="#fafafa"
 		                       HorizontalAlignment="Center"/>
 					<Grid ColumnDefinitions="*,*,*">
 						<Button Grid.Column="1"
@@ -100,9 +97,9 @@
 								Command="{Binding CreateAccountCommand}"
 								Background="Transparent"
 								BorderThickness="2"
-								BorderBrush="#fafbeb"
+								BorderBrush="#fafafa"
 								CornerRadius="15"
-								Foreground="#fafbeb"
+								Foreground="#fafafa"
 								HorizontalAlignment="Stretch"
 								HorizontalContentAlignment="Center"/>	
 					</Grid>

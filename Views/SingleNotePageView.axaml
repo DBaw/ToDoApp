@@ -2,7 +2,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="ToDoApp.Views.SingleNotePageView">
-	<TextBlock Text="Select Note!" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<Grid RowDefinitions="*,4*,*"
+		  Background="#556e7b">
+		
+		<TextBox Grid.Row="0"
+				 Text="{Binding NoteTitle}"
+				 FontSize="20"
+				 FontWeight="SemiBold"
+				 BorderThickness="0"
+				 Margin="8"
+				 HorizontalAlignment="Stretch" 
+				 VerticalAlignment="Stretch"
+				 VerticalContentAlignment="Center"
+				 HorizontalContentAlignment="Left"
+				 IsReadOnly="{Binding IsReadOnlyMode}"/>
+		<TextBox Grid.Row="1"
+				 Text="{Binding NoteContent}"
+				 FontSize="14"
+				 FontWeight="Normal"
+				 BorderThickness="0"
+				 HorizontalAlignment="Stretch"
+				 VerticalAlignment="Stretch"
+				 VerticalContentAlignment="Top"
+				 HorizontalContentAlignment="Left"
+				 Margin="8"
+				 IsReadOnly="{Binding IsReadOnlyMode}"/>
+	</Grid>
 </UserControl>

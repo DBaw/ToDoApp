@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ToDoApp.Views.CreateAccountView">
-	<Grid Background="#2f4858"
-		  ColumnDefinitions="*,3*,*">
+	<Grid ColumnDefinitions="*,3*,*">
 
 
 		<Grid Grid.Column="1" 
@@ -28,12 +27,11 @@
 				 HorizontalContentAlignment="Left"
 				 VerticalContentAlignment="Center"/>
 		<TextBlock Grid.Row="2"
-					Text="PASSWORD"
-				   Foreground="#fafbeb"
-					FontWeight="SemiBold"
-					VerticalAlignment="Bottom"
-					FontSize="12"
-					Margin="0,0,0,5"/>
+				   Text="PASSWORD"
+				   FontWeight="SemiBold"
+				   VerticalAlignment="Bottom"
+				   FontSize="12"
+				   Margin="0,0,0,5"/>
 		<TextBox Grid.Row="3"
 				 Text="{Binding UserPassword}"
 				 PasswordChar="*"
@@ -47,7 +45,6 @@
 				 VerticalContentAlignment="Center"/>
 		<TextBlock Grid.Row="4"
 					Text="REPEAT PASSWORD"
-				   Foreground="#fafbeb"
 					FontWeight="SemiBold"
 					VerticalAlignment="Bottom"
 					FontSize="12"
@@ -66,8 +63,6 @@
 		<Button Grid.Row="7"
 				Content="Create"
 				Command="{Binding CreateCommand}"
-				Background="#B5CB66"
-				Foreground="#2f4858"
 				CornerRadius="25"
 				HorizontalContentAlignment="Center"
 				VerticalContentAlignment="Center"
@@ -76,14 +71,12 @@
 		<Button Grid.Row="9"
 				Content="Exit"
 				Command="{Binding ExitCommand}"
-				Background="#C6757C"
-				Foreground="#2f4858"
+				Background="#CD777E"
 				CornerRadius="25"
 				HorizontalContentAlignment="Center"
 				VerticalContentAlignment="Center"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"/>
-			
 		</Grid>
 	</Grid>
 </UserControl>

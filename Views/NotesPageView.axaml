@@ -8,8 +8,14 @@
 		<Grid Grid.Row="0">
 			<StackPanel Orientation="Horizontal"
 						HorizontalAlignment="Right">
-				<TextBox Text="{Binding WelcomeText}" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0"/>
-				<Button Content="Logout" Command="{Binding LogoutCommand}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding WelcomeText}" 
+						   HorizontalAlignment="Right" 
+						   VerticalAlignment="Top"/>
+				<Button Content="Logout" 
+						Command="{Binding LogoutCommand}"
+						Background="{StaticResource PrimaryColor}"
+						HorizontalAlignment="Right" 
+						VerticalAlignment="Top"/>
 			</StackPanel>
 					   
 		</Grid>
