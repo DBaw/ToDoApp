@@ -26,7 +26,7 @@ namespace ToDoApp.ViewModels
         [RelayCommand]
         public void Logout()
         {
-            Messenger.Send(new GoBackMessage());
+            Messenger.Send(new LogoutMessage());
         }
 
     }
