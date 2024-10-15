@@ -41,17 +41,17 @@ namespace ToDoApp.ViewModels
         }
 
 
-        void IRecipient<LoginSuccessMessage>.Receive(LoginSuccessMessage message)
+        public void Receive(LoginSuccessMessage message)
         {
             _previousView = CurrentView;
             CurrentView = new HomePageViewModel(Messenger, message.User);
         }
-        void IRecipient<GoToCreateAcccountMessage>.Receive(GoToCreateAcccountMessage message)
+        public void Receive(GoToCreateAcccountMessage message)
         {
             _previousView = CurrentView;
             CurrentView = new CreateAccountViewModel(_userRepository,Messenger);
         }
-        async void IRecipient<BottomBarMessage>.Receive(BottomBarMessage message)
+        public async void Receive(BottomBarMessage message)
         {
             MessageText = message.Message;
             IsError = message.IsError;
@@ -64,7 +64,7 @@ namespace ToDoApp.ViewModels
             _previousView = new CreateAccountViewModel(_userRepository, Messenger);
             CurrentView = new LoginPageViewModel(Messenger, _userRepository);
         }
-        void IRecipient<GoBackMessage>.Receive(GoBackMessage message)
+        public void Receive(GoBackMessage message)
         {
             CurrentView = _previousView;
         }

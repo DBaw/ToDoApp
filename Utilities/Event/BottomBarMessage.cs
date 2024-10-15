@@ -1,6 +1,6 @@
 ﻿namespace ToDoApp.Utilities.Event
 {
-    internal class BottomBarMessage
+    public class BottomBarMessage
     {
         public string Message;
         public bool IsError;

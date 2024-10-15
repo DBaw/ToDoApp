@@ -2,7 +2,7 @@
 
 namespace ToDoApp.Utilities.Event
 {
-    internal class LoginSuccessMessage
+    public class LoginSuccessMessage
     {
         public UserDto User { get; }
 
