@@ -44,10 +44,12 @@ namespace ToDoApp
 
         private void ConfigureServices(IServiceCollection services)
         {
-            string jsonFilePath = System.IO.Path.Combine(AppContext.BaseDirectory, "users.json");
-            
+            string jsonUsersPath = System.IO.Path.Combine(AppContext.BaseDirectory, "users.json");
+            string jsonNotesPath = System.IO.Path.Combine(AppContext.BaseDirectory, "notes.json");
+
             // Register Repositories and Messenger
-            services.AddSingleton<IUserRepository>(provider => new JsonUserRepository(jsonFilePath)); // or SqlUserRepository
+            services.AddSingleton<IUserRepository>(provider => new JsonUserRepository(jsonUsersPath));
+            services.AddSingleton<INotesRepository>(provider => new JsonNotesRepository(jsonNotesPath));
             services.AddSingleton<IMessenger, WeakReferenceMessenger>();
             
             // Register Views
