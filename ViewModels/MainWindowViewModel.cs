@@ -31,7 +31,6 @@ namespace ToDoApp.ViewModels
             _currentView = new LoginPageViewModel(Messenger, _userRepository);
             _previousView = _currentView;
 
-            // Activate message listening
             IsActive = true;
         }
 
@@ -56,7 +55,7 @@ namespace ToDoApp.ViewModels
             MessageText = message.Message;
             IsError = message.IsError;
             IsMessageVisible = true;
-            await Task.Delay(3000);
+            await Task.Delay(message.DelayMs);
             IsMessageVisible = false;
         }
         public void Receive(AccountCreatedMessage message)

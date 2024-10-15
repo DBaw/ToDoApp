@@ -48,7 +48,7 @@ namespace ToDoApp.ViewModels
             {
                 UserDto user = new(UserLogin, UserPassword);
                 _userRepository.AddUserAsync(user);
-                BottomBarMessage barMessage = new BottomBarMessage("Account created succesfully", false);
+                BottomBarMessage barMessage = new BottomBarMessage("Account created succesfully");
                 LoginSuccessMessage loginMessage = new(user);
                 Messenger.Send(barMessage);
                 Messenger.Send(loginMessage);
