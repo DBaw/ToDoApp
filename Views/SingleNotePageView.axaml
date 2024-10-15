@@ -29,5 +29,17 @@
 				 HorizontalContentAlignment="Left"
 				 Margin="8"
 				 IsReadOnly="{Binding IsReadOnlyMode}"/>
+
+		<Grid Grid.Row="2"
+			  ColumnDefinitions="*,*">
+			<Button Grid.Column="0"
+					Content="Save"
+					Command="{Binding SaveNoteCommand}"
+					Margin="20"/>
+			<Button Grid.Column="1"
+					Content="Edit"
+					Command="{Binding EditNoteCommand}"
+					Margin="20"/>
+		</Grid>
 	</Grid>
 </UserControl>

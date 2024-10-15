@@ -16,7 +16,7 @@ namespace ToDoApp.ViewModels
         public HomePageViewModel(IMessenger messenger, UserDto user)
         {
             NotesView = new NotesPageViewModel(messenger, user);
-            SingleNoteView = new SingleNotePageViewModel();
+            SingleNoteView = new SingleNotePageViewModel(messenger);
         }
     }
 }

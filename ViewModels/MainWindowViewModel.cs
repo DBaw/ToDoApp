@@ -7,7 +7,7 @@ using ToDoApp.Utilities.Repository;
 
 namespace ToDoApp.ViewModels
 {
-    public partial class MainWindowViewModel : ObservableRecipient, IRecipient<LoginSuccessMessage>, IRecipient<GoToCreateAcccountMessage>, IRecipient<BottomBarMessage>, IRecipient<GoBackMessage>
+    public partial class MainWindowViewModel : ObservableRecipient, IRecipient<LoginSuccessMessage>, IRecipient<GoToCreateAcccountMessage>, IRecipient<BottomBarMessage>, IRecipient<GoBackMessage>, IRecipient<AccountCreatedMessage>
     {
         private readonly IUserRepository _userRepository;
 
@@ -53,16 +53,16 @@ namespace ToDoApp.ViewModels
         }
         async void IRecipient<BottomBarMessage>.Receive(BottomBarMessage message)
         {
-            if (!message.IsError)
-            {
-                _previousView = CurrentView;
-                CurrentView = new LoginPageViewModel(Messenger, _userRepository);
-            }
             MessageText = message.Message;
             IsError = message.IsError;
             IsMessageVisible = true;
             await Task.Delay(3000);
             IsMessageVisible = false;
+        }
+        public void Receive(AccountCreatedMessage message)
+        {
+            _previousView = new CreateAccountViewModel(_userRepository, Messenger);
+            CurrentView = new LoginPageViewModel(Messenger, _userRepository);
         }
         void IRecipient<GoBackMessage>.Receive(GoBackMessage message)
         {
@@ -73,5 +73,7 @@ namespace ToDoApp.ViewModels
         {
             Messenger.UnregisterAll(this);
         }
+
+
     }
 }
