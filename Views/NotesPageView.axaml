@@ -4,20 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="ToDoApp.Views.NotesPageView">
-	<Grid RowDefinitions="*,*,*">
+	<Grid RowDefinitions="Auto,*">
 		<Grid Grid.Row="0">
 			<StackPanel Orientation="Horizontal"
 						HorizontalAlignment="Right">
 				<TextBlock Text="{Binding WelcomeText}" 
 						   HorizontalAlignment="Right" 
 						   VerticalAlignment="Top"/>
+				<Button Content="Settings"
+						Command="{Binding GoToSettingsCommand}"
+						Background="{StaticResource PrimaryColor}"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Top"/>
 				<Button Content="Logout" 
 						Command="{Binding LogoutCommand}"
 						Background="{StaticResource PrimaryColor}"
 						HorizontalAlignment="Right" 
 						VerticalAlignment="Top"/>
 			</StackPanel>
-					   
+			</Grid>
+		<Grid Grid.Row="1">
+			<Button Content="+"
+					Command="{Binding AddNoteCommand}"
+					FontSize="18"
+					Margin="8"
+					ZIndex="1"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Bottom"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					Height="42"
+					Width="42"
+					CornerRadius="21"/>
 		</Grid>
 	</Grid>
 		  
