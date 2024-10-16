@@ -6,7 +6,7 @@
              x:Class="ToDoApp.Views.HomePageView">
 	<Grid ColumnDefinitions="*,*">
 		<Border Grid.Column="0">
-			<TransitioningContentControl Content="{Binding SingleNoteView}"/>
+			<TransitioningContentControl Content="{Binding CurrentView}"/>
 		</Border>
 		<Border Grid.Column="1">
 			<TransitioningContentControl Content="{Binding NotesView}"/>

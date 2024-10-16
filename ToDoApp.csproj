@@ -31,4 +31,8 @@
       <DependentUpon>LoginPageView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\AddNotePageView.axaml" />
+  </ItemGroup>
 </Project>

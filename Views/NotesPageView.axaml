@@ -5,23 +5,21 @@
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="ToDoApp.Views.NotesPageView">
 	<Grid RowDefinitions="Auto,*">
-		<Grid Grid.Row="0">
-			<StackPanel Orientation="Horizontal"
-						HorizontalAlignment="Right">
-				<TextBlock Text="{Binding WelcomeText}" 
-						   HorizontalAlignment="Right" 
-						   VerticalAlignment="Top"/>
-				<Button Content="Settings"
+		<Grid Grid.Row="0"
+			  ColumnDefinitions="*,Auto,Auto"
+			  Margin="8">
+				<TextBlock Grid.Column="0"
+						   Text="{Binding WelcomeText}"
+						   HorizontalAlignment="Left" 
+						   VerticalAlignment="Center"/>
+				<Button Grid.Column="1"
+						Content="Settings"
 						Command="{Binding GoToSettingsCommand}"
-						Background="{StaticResource PrimaryColor}"
-						HorizontalAlignment="Right"
-						VerticalAlignment="Top"/>
-				<Button Content="Logout" 
+						Margin="8,0,4,0"/>
+				<Button Grid.Column="2"
+						Content="Logout" 
 						Command="{Binding LogoutCommand}"
-						Background="{StaticResource PrimaryColor}"
-						HorizontalAlignment="Right" 
-						VerticalAlignment="Top"/>
-			</StackPanel>
+						Margin="4,0,0,0"/>
 			</Grid>
 		<Grid Grid.Row="1">
 			<Button Content="+"

@@ -7,7 +7,7 @@ namespace ToDoApp.ViewModels
     public partial class HomePageViewModel : ViewModelBase
     {
         [ObservableProperty]
-        public ViewModelBase _singleNoteView;
+        public ViewModelBase _currentView;
         
         [ObservableProperty]
         public ViewModelBase _notesView;
@@ -16,7 +16,7 @@ namespace ToDoApp.ViewModels
         public HomePageViewModel(IMessenger messenger, UserDto user)
         {
             NotesView = new NotesPageViewModel(messenger, user);
-            SingleNoteView = new SingleNotePageViewModel(messenger);
+            _currentView = new AddNotePageViewModel();
         }
     }
 }

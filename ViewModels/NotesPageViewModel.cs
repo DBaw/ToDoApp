@@ -24,6 +24,18 @@ namespace ToDoApp.ViewModels
         }
 
         [RelayCommand]
+        public void AddNote()
+        {
+
+        }
+
+        [RelayCommand]
+        public void GoToSettings()
+        {
+
+        }
+
+        [RelayCommand]
         public void Logout()
         {
             Messenger.Send(new LogoutMessage());
