@@ -33,7 +33,7 @@
 	<Grid RowDefinitions="Auto, Auto, *, Auto"
 		  Background="#556e7b">
 		<TextBlock Text="New NOTE"
-				   Foreground="Black"
+				   Foreground="#fafafa"
 				   FontSize="24" 
 				   Grid.ColumnSpan="2" 
 				   Margin="10"/>
@@ -49,8 +49,19 @@
 
 		<Border Grid.Row="2" Background="{Binding SelectedColor}" CornerRadius="10" Margin="20">
 			<Grid RowDefinitions="*,2*">
-				<TextBox Text="{Binding NoteTitle}" Grid.Row="0" Watermark="Title" FontSize="18" Margin="10"/>
-				<TextBox Text="{Binding NoteContent}" Grid.Row="1" Watermark="Content" AcceptsReturn="True" FontSize="16" Margin="10"/>
+				<TextBox Text="{Binding NoteTitle}" 
+						 Grid.Row="0" 
+						 Foreground="{Binding NoteTextColor}"
+						 Watermark="Title" 
+						 FontSize="18" 
+						 Margin="10"/>
+				<TextBox Text="{Binding NoteContent}"
+						 Grid.Row="1"
+						 Foreground="{Binding NoteTextColor}" 
+						 Watermark="Content" 
+						 AcceptsReturn="True"
+						 FontSize="16" 
+						 Margin="10"/>
 			</Grid>
 		</Border>
 

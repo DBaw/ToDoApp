@@ -9,10 +9,14 @@ namespace ToDoApp.ViewModels
     public partial class AddNotePageViewModel : ViewModelBase
     {
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(ConfirmCommand))]
         private string? _noteTitle;
 
         [ObservableProperty]
         private string? _noteContent;
+
+        [ObservableProperty]
+        private IBrush _noteTextColor = Brushes.White;
 
         [ObservableProperty]
         private IBrush _selectedColor = Brushes.Gray;
@@ -39,21 +43,27 @@ namespace ToDoApp.ViewModels
             {
                 case ("Gray"):
                     SelectedColor = Brushes.Gray;
+                    NoteTextColor = Brushes.White;
                     return;
                 case ("Yellow"):
                     SelectedColor = Brushes.Yellow;
+                    NoteTextColor = Brushes.Black;
                     return;
                 case ("LightGreen"):
                     SelectedColor = Brushes.LightGreen;
+                    NoteTextColor = Brushes.Black;
                     return;
                 case ("LightBlue"):
                     SelectedColor = Brushes.LightBlue;
+                    NoteTextColor = Brushes.Black;
                     return;
                 case ("Purple"):
                     SelectedColor = Brushes.Purple;
+                    NoteTextColor = Brushes.White;
                     return;
                 case ("Red"):
                     SelectedColor = Brushes.Red;
+                    NoteTextColor = Brushes.White;
                     return;
             }
         }
