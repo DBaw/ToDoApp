@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Avalonia.Media;
+using System.ComponentModel.DataAnnotations;
 
 namespace ToDoApp.Dto
 {
@@ -9,12 +10,16 @@ namespace ToDoApp.Dto
         public int UserId {  get; }
         public string? Title { get; set; }
         public string? Content { get; set; }
+        public string Background { get; }
+        public string Foreground { get; } 
 
-        public NoteDto(int userId, string? title, string? content)
+        public NoteDto(int userId, string? title, string? content, string background, string foreground)
         {
             UserId = userId;
             Title = title;
             Content = content;
+            Background = background;
+            Foreground = foreground;
         }
     }
 }

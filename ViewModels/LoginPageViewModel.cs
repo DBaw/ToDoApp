@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System.Collections.Generic;
 using System.Linq;
 using ToDoApp.Dto;
 using ToDoApp.Utilities.Event;
@@ -10,7 +9,7 @@ using ToDoApp.Utilities.Repository;
 namespace ToDoApp.ViewModels
 {
     [ObservableRecipient]
-    public partial class LoginPageViewModel : ViewModelBase
+    public partial class LoginPageViewModel : ObservableObject
     {
         public UserDto User = new("Domonik", "Hasełko");
 

@@ -8,7 +8,7 @@ using ToDoApp.Dto;
 namespace ToDoApp.ViewModels
 {
     [ObservableRecipient]
-    public partial class CreateAccountViewModel : ViewModelBase
+    public partial class CreateAccountViewModel : ObservableObject
     {
         private readonly IUserRepository _userRepository;
 

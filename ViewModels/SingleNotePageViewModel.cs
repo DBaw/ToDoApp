@@ -7,7 +7,7 @@ using ToDoApp.Utilities.Event;
 namespace ToDoApp.ViewModels
 {
     [ObservableRecipient]
-    public partial class SingleNotePageViewModel : ViewModelBase
+    public partial class SingleNotePageViewModel : ObservableObject
     {
         [ObservableProperty]
         public NoteDto? _selectedNote = null;

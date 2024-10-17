@@ -2,12 +2,20 @@
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ToDoApp.Dto;
+using ToDoApp.Stores;
+using ToDoApp.Utilities.Event;
+using ToDoApp.Utilities.Event.HomePageEvent;
 
 namespace ToDoApp.ViewModels
 {
     [ObservableRecipient]
-    public partial class AddNotePageViewModel : ViewModelBase
+    public partial class AddNotePageViewModel : ObservableObject
     {
+        private readonly NotesStore _notesStore;
+        private readonly UserDto _userDto;
+
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(ConfirmCommand))]
         private string? _noteTitle;
@@ -21,10 +29,20 @@ namespace ToDoApp.ViewModels
         [ObservableProperty]
         private IBrush _selectedColor = Brushes.Gray;
 
+        public AddNotePageViewModel(IMessenger messenger, NotesStore notesStore, UserDto user)
+        {
+            Messenger = messenger;
+            _notesStore = notesStore;
+            _userDto = user;
+        }
+
         [RelayCommand(CanExecute =nameof(CanConfirm))]
         private void Confirm()
         {
-            // Handle note confirmation logic here
+            NoteDto note = new(_userDto.Id, NoteTitle, NoteContent, SelectedColor.ToString(), NoteTextColor.ToString());
+            _notesStore.AddNote(note);
+            Messenger.Send(new BottomBarMessage("Note added"));
+            Messenger.Send(new NoteAddedSuccessMessage());
         }
         private bool CanConfirm => !string.IsNullOrEmpty(NoteTitle);
 

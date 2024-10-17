@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Xml;
+﻿using Newtonsoft.Json;
 using System;
-using ToDoApp.Dto;
-using System.Linq;
+using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
+using System.Linq;
+using ToDoApp.Dto;
 
 namespace ToDoApp.Utilities.Repository
 {

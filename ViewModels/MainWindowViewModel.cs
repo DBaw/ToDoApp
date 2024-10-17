@@ -10,11 +10,12 @@ namespace ToDoApp.ViewModels
     public partial class MainWindowViewModel : ObservableRecipient, IRecipient<LoginSuccessMessage>, IRecipient<GoToCreateAcccountMessage>, IRecipient<BottomBarMessage>, IRecipient<GoBackMessage>, IRecipient<AccountCreatedMessage>, IRecipient<LogoutMessage>
     {
         private readonly IUserRepository _userRepository;
+        private readonly INotesRepository _notesRepository;
 
         [ObservableProperty]
-        private ViewModelBase _currentView;
+        private ObservableObject _currentView;
 
-        private ViewModelBase _previousView;
+        private ObservableObject _previousView;
 
         [ObservableProperty]
         private string _messageText = "";
@@ -25,10 +26,12 @@ namespace ToDoApp.ViewModels
         [ObservableProperty]
         private bool _isMessageVisible = false;
 
-        public MainWindowViewModel(IUserRepository userRepository)
+        public MainWindowViewModel(IUserRepository userRepository, INotesRepository notesRepository)
         {
             _userRepository = userRepository;
-            _currentView = new LoginPageViewModel(Messenger, _userRepository);
+            _notesRepository = notesRepository;
+
+            CurrentView = new LoginPageViewModel(Messenger, _userRepository);
             _previousView = _currentView;
 
             IsActive = true;
@@ -43,7 +46,7 @@ namespace ToDoApp.ViewModels
         public void Receive(LoginSuccessMessage message)
         {
             _previousView = CurrentView;
-            CurrentView = new HomePageViewModel(Messenger, message.User);
+            CurrentView = new HomePageViewModel(_notesRepository, message.User);
         }
         public void Receive(GoToCreateAcccountMessage message)
         {
