@@ -23,15 +23,13 @@ namespace ToDoApp.ViewModels
         [NotifyCanExecuteChangedFor(nameof(SaveNoteCommand))]
         public bool _isReadOnlyMode;
 
-        public SingleNotePageViewModel(IMessenger messenger)
+        public SingleNotePageViewModel(IMessenger messenger, NoteDto note)
         {
             Messenger = messenger;
             IsReadOnlyMode = true;
 
-            if (SelectedNote == null) 
-            {
-                NoteTitle = "Select Note"; 
-            }
+            NoteTitle = note.Title ?? "Select Note";
+            NoteContent = note.Content ?? string.Empty;
         }
 
         

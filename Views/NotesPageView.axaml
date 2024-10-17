@@ -23,10 +23,14 @@
 			</Grid>
 		<Grid Grid.Row="1">
 			<ListBox Background="Transparent"
-					 ItemsSource="{Binding Notes}">
+					 ItemsSource="{Binding Notes}"
+					 SelectedItem="{Binding SelectedNote}"
+					 >
+
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<Border Background="{Binding Background}"
+								MaxHeight="80"
                                 CornerRadius="10"
                                 Margin="8"
                                 Padding="10"
@@ -38,6 +42,7 @@
                                            Foreground="{Binding Foreground}"
                                            Margin="0,0,0,5"/>
 								<TextBlock Text="{Binding Content}"
+										   MaxLines="2"
                                            TextWrapping="Wrap"
                                            Foreground="{Binding Foreground}"
                                            FontSize="14"/>
