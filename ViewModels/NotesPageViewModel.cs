@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ToDoApp.Dto;
 using ToDoApp.Stores;
 using ToDoApp.Utilities.Event;
@@ -20,7 +20,7 @@ namespace ToDoApp.ViewModels
         public string _welcomeText = string.Empty;
 
         [ObservableProperty]
-        private List<NoteDto>? _notes;
+        private ObservableCollection<NoteDto>? _notes;
 
         private NoteDto? _selectedNote;
         public NoteDto? SelectedNote
@@ -46,7 +46,7 @@ namespace ToDoApp.ViewModels
 
         private void OnSelectedNoteChanged()
         {
-            Messenger.Send(new GoToNotePageMessage(_selectedNote));
+            Messenger.Send(new GoToNotePageMessage(SelectedNote));
         }
 
         [RelayCommand]

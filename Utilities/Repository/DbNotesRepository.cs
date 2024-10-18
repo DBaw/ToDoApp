@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using ToDoApp.DB;
 using ToDoApp.Dto;
@@ -38,6 +38,6 @@ namespace ToDoApp.Utilities.Repository
 
         public NoteDto GetNoteById(int id) => _dbContext.Notes.Find(id);
 
-        public List<NoteDto> ListNotesByUser(int userId) => _dbContext.Notes.Where(note => note.UserId == userId).ToList();
+        public ObservableCollection<NoteDto> ListNotesByUser(int userId) => new ObservableCollection<NoteDto>(_dbContext.Notes.Where(note => note.UserId == userId));
     }
 }

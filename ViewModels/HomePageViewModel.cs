@@ -69,7 +69,7 @@ namespace ToDoApp.ViewModels
         {
             if (_selectedNote != null)
             {
-                CurrentView = new NotePageViewModel(Messenger,_selectedNote);
+                CurrentView = new NotePageViewModel(Messenger, _notesStore, _selectedNote);
             }
             else
             {

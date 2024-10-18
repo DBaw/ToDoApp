@@ -1,7 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ToDoApp.Dto;
-using ToDoApp.Utilities.Event.HomePageEvent;
 using ToDoApp.Utilities.Repository;
 
 namespace ToDoApp.Stores
@@ -11,7 +10,7 @@ namespace ToDoApp.Stores
         private readonly INotesRepository _notesRepository;
         private readonly UserDto _userDto;
 
-        public List<NoteDto> UserNotes;
+        public ObservableCollection<NoteDto> UserNotes;
 
         public NotesStore(INotesRepository notesRepository, UserDto user)
         {
@@ -48,7 +47,7 @@ namespace ToDoApp.Stores
         private void ReloadUserNotes()
         {
             UserNotes.Clear();
-            List<NoteDto> allNotes = _notesRepository.ListNotesByUser(_userDto.Id);
+            ObservableCollection<NoteDto> allNotes = _notesRepository.ListNotesByUser(_userDto.Id);
             foreach (NoteDto note in allNotes)
             {
                 UserNotes.Add(note);

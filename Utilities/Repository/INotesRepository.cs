@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ToDoApp.Dto;
 
 namespace ToDoApp.Utilities.Repository
@@ -9,6 +10,6 @@ namespace ToDoApp.Utilities.Repository
         void RemoveNote(int id);
         void EditNote(int id, string? title, string? content);
         NoteDto GetNoteById(int id);
-        List<NoteDto> ListNotesByUser(int userId);
+        ObservableCollection<NoteDto> ListNotesByUser(int userId);
     }
 }

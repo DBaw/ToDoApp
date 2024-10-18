@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using ToDoApp.Dto;
@@ -10,7 +11,7 @@ namespace ToDoApp.Utilities.Repository
     public class JsonNotesRepository : INotesRepository
     {
         private string _filePath;
-        private List<NoteDto> _notes;
+        private ObservableCollection<NoteDto> _notes;
 
         public JsonNotesRepository(string filePath)
         {
@@ -18,15 +19,15 @@ namespace ToDoApp.Utilities.Repository
             _notes = LoadNotes();
         }
 
-        private List<NoteDto> LoadNotes()
+        private ObservableCollection<NoteDto> LoadNotes()
         {
             if (!File.Exists(_filePath))
             {
-                return new List<NoteDto>();
+                return new ObservableCollection<NoteDto>();
             }
 
             var jsonData = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<List<NoteDto>>(jsonData) ?? new List<NoteDto>();
+            return JsonConvert.DeserializeObject<ObservableCollection<NoteDto>>(jsonData) ?? new ObservableCollection<NoteDto>();
         }
 
         private void SaveNotes()
@@ -76,9 +77,9 @@ namespace ToDoApp.Utilities.Repository
             return _notes.FirstOrDefault(n => n.Id == id) ?? throw new ArgumentException($"Note with Id {id} not found.");
         }
 
-        public List<NoteDto> ListNotesByUser(int userId)
+        public ObservableCollection<NoteDto> ListNotesByUser(int userId)
         {
-            return _notes.Where(n => n.UserId == userId).ToList();
+            return new ObservableCollection<NoteDto>(_notes.Where(n => n.UserId == userId));
         }
     }
 }

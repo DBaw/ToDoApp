@@ -24,6 +24,11 @@
 
 		<Grid Grid.Row="2"
 			  ColumnDefinitions="*,*">
+			<Button Grid.Column="0"
+					Content="Delete"
+					Command="{Binding DeleteCommand}"
+					Background="#B01520"
+					Margin="20"/>
 			<Button Grid.Column="1"
 					Content="Edit"
 					Command="{Binding EditCommand}"
