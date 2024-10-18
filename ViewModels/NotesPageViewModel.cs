@@ -52,7 +52,7 @@ namespace ToDoApp.ViewModels
         [RelayCommand]
         public void GoToAddNote()
         {
-
+            Messenger.Send(new GoToAddNoteMessage());
         }
 
         [RelayCommand]

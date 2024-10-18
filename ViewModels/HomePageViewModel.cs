@@ -7,9 +7,10 @@ using ToDoApp.Utilities.Repository;
 
 namespace ToDoApp.ViewModels
 {
-    public partial class HomePageViewModel : ObservableRecipient, IRecipient<NoteAddedSuccessMessage>, IRecipient<NoteSelectedMessage>
+    public partial class HomePageViewModel : ObservableRecipient, IRecipient<NoteAddedSuccessMessage>, IRecipient<NoteSelectedMessage>, IRecipient<CancelAddingNoteMessage>, IRecipient<GoToAddNoteMessage>
     {
         private readonly NotesStore _notesStore;
+        private readonly UserDto _user;
 
         [ObservableProperty]
         public ObservableObject _currentView;
@@ -23,10 +24,11 @@ namespace ToDoApp.ViewModels
 
         public HomePageViewModel(INotesRepository notesRepository, UserDto user)
         {
-            _notesStore = new NotesStore(notesRepository, user);
+            _user = user;
+            _notesStore = new NotesStore(notesRepository, _user);
             SelectedNote = null;
 
-            NotesView = new NotesPageViewModel(Messenger, _notesStore, user);
+            NotesView = new NotesPageViewModel(Messenger, _notesStore, _user);
             CurrentView = new SelectNotePageViewModel();
 
             IsActive = true;
@@ -45,6 +47,16 @@ namespace ToDoApp.ViewModels
         public void Receive(NoteSelectedMessage message)
         {
             CurrentView = new SingleNotePageViewModel(Messenger, message.Note);
+        }
+
+        public void Receive(CancelAddingNoteMessage message)
+        {
+            CurrentView = new SelectNotePageViewModel();
+        }
+
+        public void Receive(GoToAddNoteMessage message)
+        {
+            CurrentView = new AddNotePageViewModel(Messenger,_notesStore, _user);
         }
 
         protected override void OnDeactivated()

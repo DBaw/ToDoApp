@@ -49,7 +49,7 @@ namespace ToDoApp.ViewModels
         [RelayCommand]
         private void Cancel()
         {
-            // Handle cancel logic here
+            Messenger.Send(new CancelAddingNoteMessage());
         }
 
         [RelayCommand]
