@@ -35,4 +35,8 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Views\AddNotePageView.axaml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\SelectNotePageView.axaml" />
+  </ItemGroup>
 </Project>

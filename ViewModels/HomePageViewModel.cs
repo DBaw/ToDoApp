@@ -27,7 +27,7 @@ namespace ToDoApp.ViewModels
             SelectedNote = null;
 
             NotesView = new NotesPageViewModel(Messenger, _notesStore, user);
-            CurrentView = new AddNotePageViewModel(Messenger, _notesStore, user);
+            CurrentView = new SelectNotePageViewModel();
 
             IsActive = true;
         }
