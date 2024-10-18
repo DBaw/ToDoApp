@@ -7,10 +7,11 @@ using ToDoApp.Utilities.Repository;
 
 namespace ToDoApp.ViewModels
 {
-    public partial class HomePageViewModel : ObservableRecipient, IRecipient<NoteAddedSuccessMessage>, IRecipient<NoteSelectedMessage>, IRecipient<CancelAddingNoteMessage>, IRecipient<GoToAddNoteMessage>
+    public partial class HomePageViewModel : ObservableRecipient, IRecipient<GoToNotePageMessage>, IRecipient<CancelAddingNoteMessage>, IRecipient<GoToAddNoteMessage>, IRecipient<GoToEditNoteMessage>
     {
         private readonly NotesStore _notesStore;
         private readonly UserDto _user;
+        private NoteDto? _selectedNote;
 
         [ObservableProperty]
         public ObservableObject _currentView;
@@ -18,15 +19,13 @@ namespace ToDoApp.ViewModels
         [ObservableProperty]
         public ObservableObject _notesView;
 
-        [ObservableProperty]
-        private NoteDto? _selectedNote;
 
 
         public HomePageViewModel(INotesRepository notesRepository, UserDto user)
         {
             _user = user;
+            _selectedNote = null;
             _notesStore = new NotesStore(notesRepository, _user);
-            SelectedNote = null;
 
             NotesView = new NotesPageViewModel(Messenger, _notesStore, _user);
             CurrentView = new SelectNotePageViewModel();
@@ -39,19 +38,15 @@ namespace ToDoApp.ViewModels
             Messenger.RegisterAll(this);
         }
 
-        public void Receive(NoteAddedSuccessMessage message)
+        public void Receive(GoToNotePageMessage message)
         {
-            CurrentView = new SingleNotePageViewModel(Messenger, null);
-        }
-
-        public void Receive(NoteSelectedMessage message)
-        {
-            CurrentView = new SingleNotePageViewModel(Messenger, message.Note);
+            _selectedNote = message.Note;
+            ChangeToSelectedNote();
         }
 
         public void Receive(CancelAddingNoteMessage message)
         {
-            CurrentView = new SelectNotePageViewModel();
+            ChangeToSelectedNote();
         }
 
         public void Receive(GoToAddNoteMessage message)
@@ -59,9 +54,27 @@ namespace ToDoApp.ViewModels
             CurrentView = new AddNotePageViewModel(Messenger,_notesStore, _user);
         }
 
+        public void Receive(GoToEditNoteMessage message)
+        {
+            CurrentView = new NoteEditPageViewModel(Messenger, _notesStore, _selectedNote);
+        }
+
         protected override void OnDeactivated()
         {
             Messenger.UnregisterAll(this);
+        }
+
+
+        private void ChangeToSelectedNote()
+        {
+            if (_selectedNote != null)
+            {
+                CurrentView = new NotePageViewModel(Messenger,_selectedNote);
+            }
+            else
+            {
+                CurrentView = new SelectNotePageViewModel();
+            }
         }
     }
 }

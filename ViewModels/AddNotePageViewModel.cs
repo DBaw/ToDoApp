@@ -42,7 +42,7 @@ namespace ToDoApp.ViewModels
             NoteDto note = new(_userDto.Id, NoteTitle, NoteContent, SelectedColor.ToString(), NoteTextColor.ToString());
             _notesStore.AddNote(note);
             Messenger.Send(new BottomBarMessage("Note added"));
-            Messenger.Send(new NoteAddedSuccessMessage());
+            Messenger.Send(new GoToNotePageMessage(note));
         }
         private bool CanConfirm => !string.IsNullOrEmpty(NoteTitle);
 

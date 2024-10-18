@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
-             x:Class="ToDoApp.Views.SingleNotePageView">
+             x:Class="ToDoApp.Views.NoteEditPageView">
 	<Grid RowDefinitions="*,4*,*"
 		  Background="#556e7b">
 		
@@ -16,8 +16,7 @@
 				 HorizontalAlignment="Stretch" 
 				 VerticalAlignment="Stretch"
 				 VerticalContentAlignment="Center"
-				 HorizontalContentAlignment="Left"
-				 IsReadOnly="{Binding IsReadOnlyMode}"/>
+				 HorizontalContentAlignment="Left"/>
 		<TextBox Grid.Row="1"
 				 Text="{Binding NoteContent}"
 				 FontSize="14"
@@ -27,18 +26,17 @@
 				 VerticalAlignment="Stretch"
 				 VerticalContentAlignment="Top"
 				 HorizontalContentAlignment="Left"
-				 Margin="8"
-				 IsReadOnly="{Binding IsReadOnlyMode}"/>
+				 Margin="8"/>
 
 		<Grid Grid.Row="2"
 			  ColumnDefinitions="*,*">
 			<Button Grid.Column="0"
 					Content="Save"
-					Command="{Binding SaveNoteCommand}"
+					Command="{Binding SaveCommand}"
 					Margin="20"/>
 			<Button Grid.Column="1"
-					Content="Edit"
-					Command="{Binding EditNoteCommand}"
+					Content="Cancel"
+					Command="{Binding CancelCommand}"
 					Margin="20"/>
 		</Grid>
 	</Grid>

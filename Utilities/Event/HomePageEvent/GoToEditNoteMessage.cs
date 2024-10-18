@@ -2,14 +2,13 @@
 
 namespace ToDoApp.Utilities.Event.HomePageEvent
 {
-    public class NoteSelectedMessage
+    public class GoToEditNoteMessage
     {
-        public NoteDto? Note { get; }
+        public NoteDto Note;
 
-        public NoteSelectedMessage(NoteDto note)
+        public GoToEditNoteMessage(NoteDto note)
         {
             Note = note;
         }
     }
-
 }

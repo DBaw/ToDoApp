@@ -14,13 +14,13 @@ namespace ToDoApp.ViewModels
     public partial class NotesPageViewModel : ObservableObject
     {
         private readonly NotesStore _notesStore;
-        private UserDto _user;
+        private readonly UserDto _user;
 
         [ObservableProperty]
         public string _welcomeText = string.Empty;
 
         [ObservableProperty]
-        public List<NoteDto> _notes;
+        private List<NoteDto>? _notes;
 
         private NoteDto? _selectedNote;
         public NoteDto? SelectedNote
@@ -46,7 +46,7 @@ namespace ToDoApp.ViewModels
 
         private void OnSelectedNoteChanged()
         {
-            Messenger.Send(new NoteSelectedMessage(_selectedNote));
+            Messenger.Send(new GoToNotePageMessage(_selectedNote));
         }
 
         [RelayCommand]

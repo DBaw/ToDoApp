@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using System.Collections.Generic;
 using ToDoApp.Dto;
+using ToDoApp.Utilities.Event.HomePageEvent;
 using ToDoApp.Utilities.Repository;
 
 namespace ToDoApp.Stores
 {
     public class NotesStore
     {
-        private INotesRepository _notesRepository;
-        private UserDto _userDto;
+        private readonly INotesRepository _notesRepository;
+        private readonly UserDto _userDto;
 
         public List<NoteDto> UserNotes;
 
@@ -51,7 +53,6 @@ namespace ToDoApp.Stores
             {
                 UserNotes.Add(note);
             }
-
         }
     }
 }

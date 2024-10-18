@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using ToDoApp.DB;
 using ToDoApp.Utilities.Repository;
 using ToDoApp.ViewModels;
 using ToDoApp.Views;
@@ -42,14 +43,17 @@ namespace ToDoApp
             base.OnFrameworkInitializationCompleted();
         }
 
-        private void ConfigureServices(IServiceCollection services)
+        private static void ConfigureServices(IServiceCollection services)
         {
             string jsonUsersPath = System.IO.Path.Combine(AppContext.BaseDirectory, "users.json");
             string jsonNotesPath = System.IO.Path.Combine(AppContext.BaseDirectory, "notes.json");
 
+            AppDbContext dbContext = new();
+            dbContext.Database.EnsureCreated();
+
             // Register Repositories and Messenger
-            services.AddSingleton<IUserRepository>(provider => new JsonUserRepository(jsonUsersPath));
-            services.AddSingleton<INotesRepository>(provider => new JsonNotesRepository(jsonNotesPath));
+            services.AddSingleton<IUserRepository>(provider => new DbUserRepository(dbContext));
+            services.AddSingleton<INotesRepository>(provider => new DbNotesRepository(dbContext));
             services.AddSingleton<IMessenger, WeakReferenceMessenger>();
             
             // Register Views
