@@ -56,31 +56,31 @@ namespace ToDoApp.ViewModels
         private void ChangeColor(object sender) 
         {
             RadioButton? rd = sender as RadioButton;
-            string color = rd?.Background?.ToString() ?? "Gray";
+            string color = rd?.Background?.ToString() ?? "DarkSlateGray";
             switch (color) 
             {
-                case ("Gray"):
-                    SelectedColor = Brushes.Gray;
+                case ("DarkSlateGray"):
+                    SelectedColor = Brushes.DarkSlateGray;
                     NoteTextColor = Brushes.White;
                     return;
-                case ("Yellow"):
-                    SelectedColor = Brushes.Yellow;
-                    NoteTextColor = Brushes.Black;
-                    return;
-                case ("LightGreen"):
-                    SelectedColor = Brushes.LightGreen;
-                    NoteTextColor = Brushes.Black;
-                    return;
-                case ("LightBlue"):
-                    SelectedColor = Brushes.LightBlue;
-                    NoteTextColor = Brushes.Black;
-                    return;
-                case ("Purple"):
-                    SelectedColor = Brushes.Purple;
+                case ("DarkBlue"):
+                    SelectedColor = Brushes.DarkBlue;
                     NoteTextColor = Brushes.White;
                     return;
-                case ("Red"):
-                    SelectedColor = Brushes.Red;
+                case ("DarkOrchid"):
+                    SelectedColor = Brushes.DarkOrchid;
+                    NoteTextColor = Brushes.White;
+                    return;
+                case ("DarkGoldenrod"):
+                    SelectedColor = Brushes.DarkGoldenrod;
+                    NoteTextColor = Brushes.White;
+                    return;
+                case ("DarkGreen"):
+                    SelectedColor = Brushes.DarkGreen;
+                    NoteTextColor = Brushes.White;
+                    return;
+                case ("DarkRed"):
+                    SelectedColor = Brushes.DarkRed;
                     NoteTextColor = Brushes.White;
                     return;
             }

@@ -6,10 +6,6 @@
              xmlns:vm="clr-namespace:ToDoApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="ToDoApp.Views.AddNotePageView">
-
-	<Design.DataContext>
-		<vm:AddNotePageViewModel/>
-	</Design.DataContext>
 	
 	<UserControl.Resources>
 		<converter:CheckedToThicknessConverter x:Key="CheckedToThicknessConverter"/>
@@ -39,12 +35,12 @@
 				   Margin="10"/>
 
 		<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" IsChecked="True" Background="Gray"/>
-			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="Yellow"/>
-			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="LightGreen"/>
-			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="LightBlue"/>
-			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="Purple"/>
-			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="Red"/>
+			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" IsChecked="True" Background="DarkSlateGray"/>
+			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="DarkBlue"/>
+			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="DarkOrchid"/>
+			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="DarkGoldenrod"/>
+			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="DarkGreen"/>
+			<RadioButton Command="{Binding ChangeColorCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" GroupName="Colors" Background="DarkRed"/>
 		</StackPanel>
 
 		<Border Grid.Row="2" Background="{Binding SelectedColor}" CornerRadius="10" Margin="20">
