@@ -45,7 +45,6 @@ namespace ToDoApp.ViewModels
         [RelayCommand]
         public void Cancel()
         {
-            Messenger.Send(new BottomBarMessage("Edit canceled"));
             Messenger.Send(new GoToNotePageMessage(_noteDto));
         }
 

@@ -13,6 +13,7 @@
 				 FontWeight="SemiBold"
 				 BorderThickness="0"
 				 Margin="8"
+				 MaxLength="35"
 				 HorizontalAlignment="Stretch" 
 				 VerticalAlignment="Stretch"
 				 VerticalContentAlignment="Center"

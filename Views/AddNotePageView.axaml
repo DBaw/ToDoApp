@@ -54,7 +54,8 @@
 						 Foreground="{Binding NoteTextColor}"
 						 Watermark="Title" 
 						 FontSize="18" 
-						 Margin="10"/>
+						 Margin="10"
+						 MaxLength="35"/>
 				<TextBox Text="{Binding NoteContent}"
 						 Grid.Row="1"
 						 Foreground="{Binding NoteTextColor}" 
