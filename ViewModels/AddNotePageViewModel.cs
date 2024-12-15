@@ -27,7 +27,7 @@ namespace ToDoApp.ViewModels
         private IBrush _noteTextColor = Brushes.White;
 
         [ObservableProperty]
-        private IBrush _selectedColor = Brushes.Gray;
+        private IBrush _selectedColor = Brushes.DarkSlateGray;
 
         public AddNotePageViewModel(IMessenger messenger, NotesStore notesStore, UserDto user)
         {
